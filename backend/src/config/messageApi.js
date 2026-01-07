@@ -5,6 +5,9 @@ const message = {
         }
     },
     error :  {
+        input :{
+          1 : 'Vui lòng điền các vào chỗ trống'  
+        },
         user : {
             username : "user name is not found",
             password : "password ko dung"

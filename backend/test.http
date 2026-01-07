@@ -1,0 +1,19 @@
+@hostname = localhost 
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+// Get health user 
+GET http://{{host}}/api/v1/user/heath 
+// log ( hello )
+###
+
+
+POST http://{{host}}/api/v1/user/login 
+Content-Type: {{contentType}}
+
+{
+    "username" : "username",
+    "password" : "password"
+}
+

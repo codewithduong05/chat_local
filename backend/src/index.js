@@ -11,6 +11,7 @@ import RootRouter from "./routes/routes.js";
 const app = express();
 app.use(express.json())
 
+// endpoints : http://{url}/api/v1
 app.use(RootRouter)
 
 app.listen(3000, () => {

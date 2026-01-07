@@ -1,9 +1,35 @@
 import message from "../config/messageApi.js";
 import UserModel from "../models/userModel.js";
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 const loginMiddlewares  =  async (req,res,next) => {
     try {
         const {username , password} = req.body
-        
+        if (!username || !password) {
+             return res.json({
+                success: false,
+                message: message.error.input[1]
+            })
+        }
+        const usernameExists = await UserModel.findOne({ username })
+            if (!usernameExists) {
+            return res.json({
+                success: false,
+                message: message.error.user
+            });
+        }      
+
+        // so sanh hash password
+        const hashingPasswordLogin = bcrypt.hashSync(password, usernameExists.password);
+        if (hashingPasswordLogin !== usernameExists.password) {
+            throw new Error(message.error.user.password)
+        }
+
+
+        req.user = usernameExists
+        next()
+
+
     } catch (error) {
         console.log(error);
         res.json({
