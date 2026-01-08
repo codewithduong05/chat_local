@@ -12,8 +12,8 @@ GET http://{{host}}/api/v1/user/heath
 POST http://{{host}}/api/v1/user/login 
 Content-Type: {{contentType}}
 
-{
-    "username" : "username",
-    "password" : "password"
-}
 
+{
+    "username" : "admin<>",
+    "password" : "adminasda"
+}

@@ -1,10 +1,12 @@
 import message from "../config/messageApi.js";
 import UserModel from "../models/userModel.js";
-import jwt from 'jsonwebtoken'
+
 import bcrypt from 'bcrypt'
+import validate from "../config/validate.js";
 const loginMiddlewares  =  async (req,res,next) => {
     try {
         const {username , password} = req.body
+      
         if (!username || !password) {
              return res.json({
                 success: false,
@@ -31,7 +33,6 @@ const loginMiddlewares  =  async (req,res,next) => {
 
 
     } catch (error) {
-        console.log(error);
         res.json({
             success : false , 
             message : message.error.server[500]
