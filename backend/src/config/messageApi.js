@@ -2,7 +2,8 @@ const message = {
     success : {
         user : {
             username : "User name Success Full"
-        }
+        },
+        login : "User Admin login successfull"
     },
     error :  {
         input :{
