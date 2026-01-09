@@ -8,12 +8,45 @@ GET http://{{host}}/api/v1/user/heath
 // log ( hello )
 ###
 
-
 POST http://{{host}}/api/v1/user/login 
 Content-Type: {{contentType}}
-
 
 {
     "username" : "admin",
     "password" : "admin123"
 }
+// token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5MTg3OTMsImV4cCI6MTc2ODAwNTE5M30.KxnUEwGM2z3EjbCzSXgIvoMtdxlrZJvR1IowKUKWYR8
+
+### Get All Room chat
+
+GET http://{{host}}/api/v1/user/room
+# Content-Type: {{contentType}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5MTg3OTMsImV4cCI6MTc2ODAwNTE5M30.KxnUEwGM2z3EjbCzSXgIvoMtdxlrZJvR1IowKUKWYR8
+
+
+### Create Room chat
+
+POST http://{{host}}/api/v1/user/room
+Content-Type: {{contentType}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5MTg3OTMsImV4cCI6MTc2ODAwNTE5M30.KxnUEwGM2z3EjbCzSXgIvoMtdxlrZJvR1IowKUKWYR8
+
+{
+    "name" : "hoc tap",
+    "description" : "chau tin nhan hoc tap"
+}
+
+### Get Message Room chat
+GET http://{{host}}/api/v1/user/chat/6960eb4d7fd5175f8ed34ee7
+Content-Type: {{contentType}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5NjI0MzEsImV4cCI6MTc2ODA0ODgzMX0.RnIuO5hW_E4C3K4Fr-UaBr1XQsTjUzAQi0dI5NNo-z4
+
+
+### Create Message Room chat
+POST http://{{host}}/api/v1/user/chat/6960eb4d7fd5175f8ed34ee7
+Content-Type: {{contentType}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5MTg3OTMsImV4cCI6MTc2ODAwNTE5M30.KxnUEwGM2z3EjbCzSXgIvoMtdxlrZJvR1IowKUKWYR8
+
+{
+"message" : "hello world 2"
+}
+

@@ -9,4 +9,7 @@ const connectDB = async () => {
         process.exit(1)
     }
 }
+export const hash_id_mongo = (id) => {
+    return new mongoose.Types.ObjectId(id)
+}
 export default connectDB
