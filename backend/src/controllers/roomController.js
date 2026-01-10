@@ -1,4 +1,5 @@
 import RoomModel from "../models/roomModel.js"
+import RoomService from "../services/roomServices.js";
 const RoomController = {
     getAllRoom :  (req,res) => {
         RoomModel.find({})
@@ -9,9 +10,10 @@ const RoomController = {
         try {
             const { name,description} = req.body;
          
-            const newRoom = new RoomModel({ name,description});
-            const savedRoom = await newRoom.save();
-            res.status(201).json(savedRoom);
+         
+            const room = await RoomService.createRoom(name,description)
+
+            res.status(201).json(room);
         } catch (err) {
             res.status(500).json({ error: err.message });
         }

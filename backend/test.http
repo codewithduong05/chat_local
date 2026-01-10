@@ -31,8 +31,8 @@ Content-Type: {{contentType}}
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5MTg3OTMsImV4cCI6MTc2ODAwNTE5M30.KxnUEwGM2z3EjbCzSXgIvoMtdxlrZJvR1IowKUKWYR8
 
 {
-    "name" : "hoc tap",
-    "description" : "chau tin nhan hoc tap"
+    "name" : "test",
+    "description" : "module test"
 }
 
 ### Get Message Room chat
