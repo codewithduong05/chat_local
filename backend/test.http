@@ -38,15 +38,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNj
 ### Get Message Room chat
 GET http://{{host}}/api/v1/user/chat/6960eb4d7fd5175f8ed34ee7
 Content-Type: {{contentType}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5NjI0MzEsImV4cCI6MTc2ODA0ODgzMX0.RnIuO5hW_E4C3K4Fr-UaBr1XQsTjUzAQi0dI5NNo-z4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NjgwNjAxNjMsImV4cCI6MTc2ODE0NjU2M30.0f8KL0j8ebWSirI5Zkk-Zju2NQv4lL3tUm2ePDqFhM0
 
 
 ### Create Message Room chat
 POST http://{{host}}/api/v1/user/chat/6960eb4d7fd5175f8ed34ee7
 Content-Type: {{contentType}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3Njc5MTg3OTMsImV4cCI6MTc2ODAwNTE5M30.KxnUEwGM2z3EjbCzSXgIvoMtdxlrZJvR1IowKUKWYR8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWQwYjNhMWI2NzNjYTU3ZGZhMWI4NiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NjgwNjAxNjMsImV4cCI6MTc2ODE0NjU2M30.0f8KL0j8ebWSirI5Zkk-Zju2NQv4lL3tUm2ePDqFhM0
 
 {
-"message" : "hello world 2"
+"message" : "hello world 4"
 }
 

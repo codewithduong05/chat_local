@@ -23,10 +23,13 @@ const ChatController = {
     },
 
     async createChat(req, res) {
+       
+        
         try {
             const { id } = req.params;
             const { message: content } = req.body;
-
+            // console.log(content);
+            
             if (!content) {
                 return res.status(403).json({
                     message: message.error.input[1]

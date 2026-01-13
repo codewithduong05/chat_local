@@ -31,7 +31,7 @@ usersRouter.post("/room", authMiddlewares,RoomController.createRoom)
 usersRouter.get("/chat/:id", authMiddlewares,ChatController.getAllChatRoomId) 
 
 
-//endpoints : http://{host}/api/v1/user/chat
+//endpoints : http://{host}/api/v1/user/chat/:id
 // method : Post ( create chat room id)
 usersRouter.post("/chat/:id", authMiddlewares,ChatController.createChat) 
 
