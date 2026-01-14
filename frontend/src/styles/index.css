@@ -1,0 +1,36 @@
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+ 
+/* Desktop */
+.desktop-container {
+  display: flex;
+  height: 100vh;
+  
+}
+.sidebar {
+  width: 250px;
+  border-right: 1px solid #ddd;
+}
+.main-content {
+  flex-grow: 1;
+}
+
+/* Mobile */
+.mobile-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.mobile-header {
+  background: #005f99;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+.mobile-main {
+  flex-grow: 1;
+}
