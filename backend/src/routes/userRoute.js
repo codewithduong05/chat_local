@@ -7,8 +7,6 @@ import authMiddlewares from "../middlewares/authMiddlewares.js";
 
 const usersRouter = express.Router();
 // endpoints : http://{host}/api/v1/user/heath 
-
-
 // method : Get
 usersRouter.get("/heath", (req,res) => {res.status(200).json("hello")});
 

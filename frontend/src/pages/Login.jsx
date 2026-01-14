@@ -4,27 +4,27 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-
+ 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch('/api/v1/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            });
-            const data = await response.json();
-            if (data.success) {
-                localStorage.setItem('token', data.data.token);
-                window.location.href = '/chat/home';
-            } else {
-                setError(data.message);
-            }
-        } catch (error) {
-            setError(error.message);
-        }
+        // e.preventDefault();
+        // try {
+        //     const response = await fetch('/api/v1/user/login', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ username, password })
+        //     });
+        //     const data = await response.json();
+        //     if (data.success) {
+        //         localStorage.setItem('token', data.data.token);
+        //         window.location.href = '/chat/home';
+        //     } else {
+        //         setError(data.message);
+        //     }
+        // } catch (error) {
+        //     setError(error.message);
+        // }
     };
 
     return (
