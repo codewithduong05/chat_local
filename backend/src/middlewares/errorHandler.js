@@ -1,10 +1,18 @@
-const errorHandler = (err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+import logger from "../config/logger.js";
 
-  res.status(statusCode).json({
-    success: false,
+const errorHandler = (err, req, res, next) => {
+  logger.error({
+    method: req.method,
+    path: req.originalUrl,
+    status: err.status || 500,
+    duration: "N/A",
+    ip: req.ip,
+    userId: req.user?.id,
+    error: err.message,
+  });
+
+  res.status(err.status || 500).json({
     message: err.message || "Internal Server Error",
-    stack: process.env.NODE_ENV === "production" ? null : err.stack
   });
 };
 
