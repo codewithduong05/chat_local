@@ -21,7 +21,8 @@ const UserController = {
                     username : user.name,
                     asstoken : token
                 },
-                
+                status : 200,
+                success : true,
                 message : message.success.login
             })
         }
