@@ -6,7 +6,8 @@ import validate from "../config/validate.js";
 const loginMiddlewares  =  async (req,res,next) => {
     try {
         const {username , password} = req.body
-      
+   
+        
         if (!username || !password) {
              return res.json({
                 success: false,
@@ -20,7 +21,8 @@ const loginMiddlewares  =  async (req,res,next) => {
                 message: message.error.user
             });
         }      
-
+        // console.log(usernameExists);
+        
         // so sanh hash password
         const hashingPasswordLogin = bcrypt.hashSync(password, usernameExists.password);
         if (hashingPasswordLogin !== usernameExists.password) {

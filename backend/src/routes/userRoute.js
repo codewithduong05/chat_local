@@ -10,9 +10,9 @@ const usersRouter = express.Router();
 // method : Get
 usersRouter.get("/heath", (req,res) => {res.status(200).json("hello")});
 
-//endpoints : http://{host}/api/v1/user/login 
-// method : POST
-usersRouter.post("/login", loginMiddlewares,UserController.login) 
+// //endpoints : http://{host}/api/v1/user/login 
+// // method : POST
+// usersRouter.post("/login", loginMiddlewares,UserController.login) 
 
 
 //endpoints : http://{host}/api/v1/user/room
