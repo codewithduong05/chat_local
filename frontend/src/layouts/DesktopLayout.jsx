@@ -2,6 +2,7 @@ import React from "react";
 import ChatSidebar from "../features/chat/ChatSidebar";
 
 export default function DesktopLayout({ children }) {
+  
   return (
     <div className="desktop-container">
       <aside className="sidebar">

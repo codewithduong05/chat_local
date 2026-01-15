@@ -86,3 +86,11 @@
     font-size: 13px;
     text-align: center;
 }
+
+/* Success message */
+.success {
+    margin-top: 10px;
+    color: rgb(47, 255, 64);
+    font-size: 13px;
+    text-align: center;
+}

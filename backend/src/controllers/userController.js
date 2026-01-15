@@ -19,7 +19,7 @@ const UserController = {
             return res.status(200).json({
                 data : {
                     username : user.name,
-                    asstoken : token
+                    access_token : token
                 },
                 status : 200,
                 success : true,

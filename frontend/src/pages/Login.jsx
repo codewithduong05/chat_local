@@ -1,12 +1,26 @@
 import { useState } from "react";
+import { login } from "@/services/auth.service";
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
- 
+    const [message,setMessage] = useState(null)
+
+    
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+        try {
+            const response  = await login({ username, password })
+            if (response.status == 200 || response.success == true ) {
+                localStorage.setItem('token', response.data.access_token);
+                 setError("");
+                 setMessage(response.message)
+            }
+            
+        } catch (error) {
+             setError(error.message);
+        }
         // try {
         //     const response = await fetch('/api/v1/user/login', {
         //         method: 'POST',
@@ -48,9 +62,10 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <button type="submit">Login</button>
+                <button type="submit">Login </button>
 
                 {error && <p className="error">{error}</p>}
+                {message && <p className="success">{message}</p>}
             </form>
         </div>
 
