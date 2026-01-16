@@ -5,7 +5,8 @@ const authMiddlewares = async (req, res, next) => {
 
     try {
 
-        const token = req.headers['authorization'] ? req.headers['authorization'].trim() : null;
+        const authorizationHeader = req.headers['authorization'] || req.headers['Authorization'];
+        const token = authorizationHeader ? authorizationHeader.trim().replace(/^Bearer\s+/, '') : null;
         
         if (!token) {
             return res.status(401).json({
