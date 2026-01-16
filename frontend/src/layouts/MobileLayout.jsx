@@ -1,4 +1,6 @@
+// layouts/MobileLayout.jsx
 import React from "react";
+import "@/styles/chat/mobile/index.css"
 
 export default function MobileLayout({ children }) {
   return (
