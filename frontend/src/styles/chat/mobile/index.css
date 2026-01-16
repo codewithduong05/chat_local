@@ -1,0 +1,16 @@
+
+/* Mobile */
+.mobile-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.mobile-header {
+  background: #005f99;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+.mobile-main {
+  flex-grow: 1;
+}
