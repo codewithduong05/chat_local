@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const ChatWindowUI = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
