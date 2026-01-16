@@ -1,5 +1,7 @@
 import { useState } from "react";
+import "@/styles/login/index.css"
 import { login } from "@/services/auth.service";
+import { isDesktopDevice } from "@/utils/devices.js";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -10,35 +12,23 @@ const Login = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
+        try {  
             const response  = await login({ username, password })
             if (response.status == 200 || response.success == true ) {
                 localStorage.setItem('token', response.data.access_token);
                  setError("");
                  setMessage(response.message)
+                setInterval(() => {
+                    setMessage("")
+                    window.location.href = '/chat';
+                }, 1000);
             }
+          
             
         } catch (error) {
              setError(error.message);
         }
-        // try {
-        //     const response = await fetch('/api/v1/user/login', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({ username, password })
-        //     });
-        //     const data = await response.json();
-        //     if (data.success) {
-        //         localStorage.setItem('token', data.data.token);
-        //         window.location.href = '/chat/home';
-        //     } else {
-        //         setError(data.message);
-        //     }
-        // } catch (error) {
-        //     setError(error.message);
-        // }
+ 
     };
 
     return (
