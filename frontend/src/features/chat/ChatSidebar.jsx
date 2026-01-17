@@ -19,8 +19,8 @@ const ChatSidebar = () => {
 
         const fetechRoomChat = async () => {
             const reponse = await getRoomChat()
-            console.log(reponse);
-            
+            // console.log(reponse[0]);
+            setRooms(reponse)
         }
          fetechRoomChat();
     }, []);
@@ -35,10 +35,10 @@ const ChatSidebar = () => {
             <h2>Ưu tiên</h2>
             <input type="search" placeholder='Tim kiem' name="" id="" />
             <ul className='category-sidebar-p'>
-                {users.map((u) => (
+                {rooms.map((u) => (
                     <li
                         className='category-sidebar'
-                        key={u.id}
+                        key={u._id}
                         onClick={() => selectChat(u.id)}
                         style={{
                             background: activeChatId === u.id ? "#e6f1ff" : "",

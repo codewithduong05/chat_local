@@ -1,4 +1,15 @@
 const ChatHeader = () => {
+    const login_admin = () => {
+        const input_admin = prompt("Nhap input");
+        if (input_admin !== "admin") {
+            alert("Mat khau sai")
+        }
+        localStorage.setItem("admin_active", true)
+        localStorage.setItem('admin_token', input_admin);
+        setInterval(() => {
+            window.location.href = '/chat/admin';
+        }, 1000);
+    }
     return (
         <header className="chat-header-window">
             <div className="chat-profile-header">
@@ -14,6 +25,7 @@ const ChatHeader = () => {
                 <div className="chat-header-right">
                     <button>Cai dat</button>
                 </div>
+                <button onClick={login_admin}>Dang nhap admin</button>
             </div>
 
         </header>
