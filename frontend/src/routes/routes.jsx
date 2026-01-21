@@ -5,7 +5,7 @@ import ChatWindowUI from "@/features/chat/ChatWindow";
 import ChatAdmin from "@/pages/ChatAdmin";
 
 const router = createBrowserRouter([
-  { path: "/", element: <div>Hell World</div> },
+  { path: "/", element: <Login /> },
   { path: "/chat/login", element: <Login /> },
   {path:"/chat/admin", element: <ChatAdmin/>},
   {

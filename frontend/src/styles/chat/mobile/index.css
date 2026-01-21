@@ -14,3 +14,10 @@
 .mobile-main {
   flex-grow: 1;
 }
+.mobile-header-left {
+  display:  flex;
+
+  justify-content:space-between;
+
+}
+.menu-icon { font-size: 22px; cursor: pointer; }

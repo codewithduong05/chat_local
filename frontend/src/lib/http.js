@@ -11,7 +11,6 @@ export const request = async (url, options = {}) => {
     ...(options.headers || {}),
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
-console.log(headers);
 
   const fetchOptions = {
     ...options,
