@@ -3,7 +3,7 @@ import "@/styles/login/index.css"
 import { login } from "@/services/auth.service";
 import { isDesktopDevice } from "@/utils/devices.js";
 import useAuth from "@/hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -12,8 +12,8 @@ const Login = () => {
     const [message, setMessage] = useState(null)
 
     const { isAuthenticated } = useAuth();
- 
-    
+
+
     if (isAuthenticated) {
         return <Navigate to="/chat" replace />;
     }
@@ -60,8 +60,14 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="btn-dashboard">
+                    <button type="submit">Login </button>
 
-                <button type="submit">Login </button>
+                    <button
+                    >
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/parking_lot">Parking Lot</Link>
+                        </button>
+                </div>
 
                 {error && <p className="error">{error}</p>}
                 {message && <p className="success">{message}</p>}

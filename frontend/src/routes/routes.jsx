@@ -3,6 +3,7 @@ import Login from "@/pages/Login";
 import ResponsiveLayout from "@/layouts/ResponsiveLayout";
 import ChatWindowUI from "@/features/chat/ChatWindow";
 import ChatAdmin from "@/pages/ChatAdmin";
+import ParkingDashboard from "@/features/parking/dashboard";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -13,7 +14,8 @@ const router = createBrowserRouter([
       <ResponsiveLayout>
         <ChatWindowUI />
       </ResponsiveLayout>
-  }
+  },
+  { path: "/parking_lot", element: < ParkingDashboard /> },
 
 ]);
 

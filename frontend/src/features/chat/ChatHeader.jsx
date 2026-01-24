@@ -10,6 +10,11 @@ const ChatHeader = () => {
             window.location.href = '/chat/admin';
         }, 1000);
     }
+    const parking_lot = () => {
+         setInterval(() => {
+            window.location.href = '/parking_lot';
+        }, 1000);
+    }
     return (
         <header className="chat-header-window">
             <div className="chat-profile-header">
@@ -26,6 +31,9 @@ const ChatHeader = () => {
                     <button>Cai dat</button>
                 </div>
                 <button onClick={login_admin}>Dang nhap admin</button>
+                   <button
+                   className="parking_lot"
+                   onClick={parking_lot}>cho de xe</button>
             </div>
 
         </header>

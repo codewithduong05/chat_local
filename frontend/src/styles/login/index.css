@@ -51,6 +51,7 @@
 
 /* Button */
 .login-form button {
+    
     width: 100%;
     padding: 10px;
     background: #007bff;
@@ -80,4 +81,9 @@
     color: rgb(47, 255, 64);
     font-size: 13px;
     text-align: center;
+}
+.btn-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
