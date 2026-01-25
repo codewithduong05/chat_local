@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+
 import { useChat } from '@/contexts/ChatContext'
-import useAuth from '@/hooks/useAuth';
+
 import { getRoomChat } from '@/services/chat.service';
 const ChatSidebar = () => {
     const { selectChat, activeChatId } = useChat();
     const [rooms, setRooms] = useState([]);
 
-    const { isAuthenticated } = useAuth();
-   if (!isAuthenticated) {
-        return <Navigate to="/chat/login" replace />;
-    }
 
    
  
