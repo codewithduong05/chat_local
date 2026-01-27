@@ -6,9 +6,9 @@ import formatTime from "@/utils/format_time";
 
 const ParkingDashboard = () => {
   const [selectedDate] = useState("today");
-const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(Date.now());
   const [selectedSlot, setSelectedSlot] = useState(null);
-
+  const [selectTime, setSelectTime] = useState(0)
   const [serverNow, setServerNow] = useState(null);
   const [expiresAt, setExpiresAt] = useState(null);
 
@@ -26,44 +26,57 @@ const [now, setNow] = useState(Date.now());
 
   }, []);
 
-useEffect(() => {
-  const handler = (data) => {
-    setServerNow(data.serverNow);
-    setExpiresAt(data.expiresAt);
+  useEffect(() => {
+    const handler = (data) => {
+      setServerNow(data.serverNow);
+      setExpiresAt(data.expiresAt);
+    };
+
+    socket.on("parking-update", handler);
+
+    return () => socket.off("parking-update", handler);
+  }, []);
+
+
+  useEffect(() => {
+    if (!serverNow) return;
+
+    const offset = serverNow - Date.now();
+
+
+    // lệch giờ client ↔ server
+
+    const t = setInterval(() => {
+      setNow(Date.now() + offset);
+      // if (now)
+      console.log(now);
+
+    }, 1000);
+
+    return () => clearInterval(t);
+  }, [serverNow]);
+
+  const getTimeLeft = () => {
+    console.log(formatTime(now));
+
+    if (!expiresAt || !now) {
+      return 0
+
+
+    };
+    return Math.max(0, expiresAt - now);
   };
 
-  socket.on("parking-update", handler);
-
-  return () => socket.off("parking-update", handler);
-}, []);
-
-
-useEffect(() => {
-  if (!serverNow) return;
-
-  const offset = serverNow - Date.now(); 
-  // lệch giờ client ↔ server
-
-  const t = setInterval(() => {
-    setNow(Date.now() + offset);
-    // if (now)
-    console.log(now);
-    
-  }, 1000);
-
-  return () => clearInterval(t);
-}, [serverNow]);
-
-const getTimeLeft = () => {
-  console.log(formatTime(now));
-  
-  if (!expiresAt || !now) {
-    return 0
+  const handler_click_socket = (e) => {
+    e.preventDefault();
+    if (selectTime == 0 || !selectTime)
+      alert("chua chon so gio")
+    else if (selectedSlot == null)
+      alert("chua cho so ghe")
     
     
-  };
-  return Math.max(0, expiresAt - now);
-};
+
+  }
   return (
     <div>
       <h1>ParkingDashboard </h1>
@@ -71,6 +84,14 @@ const getTimeLeft = () => {
         Hết hạn sau:
         {formatTime(getTimeLeft())}
       </p>
+      <form action="" >
+        <input type="number" value={selectTime} onChange={e => setSelectTime(parseInt(e.target.value, 10))} name="" id="" />
+        <button
+          onClick={handler_click_socket}
+        >Xac nhan</button>
+
+      </form>
+      <br />
       <div className="grid">
         {rows.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
