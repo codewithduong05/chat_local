@@ -52,6 +52,6 @@ const io = new Server(server, {
 
 socketHandler(io);
 
-server.listen(3000, () => {
+server.listen(process.env.PORT_BACKEND, () => {
   console.log("Server running on port 3000");
 });

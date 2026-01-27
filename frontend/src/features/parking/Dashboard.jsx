@@ -55,6 +55,8 @@ useEffect(() => {
 }, [serverNow]);
 
 const getTimeLeft = () => {
+  console.log(formatTime(now));
+  
   if (!expiresAt || !now) {
     return 0
     
