@@ -73,8 +73,11 @@ const ParkingDashboard = () => {
       alert("chua chon so gio")
     else if (selectedSlot == null)
       alert("chua cho so ghe")
+    console.log(selectedSlot);
     
-    
+    const data = {
+      seat : selectedSlot
+    }
 
   }
   return (
