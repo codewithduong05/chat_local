@@ -63,15 +63,16 @@ const Login = () => {
                 <div className="btn-dashboard">
                     <button type="submit">Login </button>
 
-                    <button
-                    >
-                        <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/parking_lot">Parking Lot</Link>
-                        </button>
+            
                 </div>
 
                 {error && <p className="error">{error}</p>}
                 {message && <p className="success">{message}</p>}
             </form>
+                    <button
+                    >
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/parking_lot">Parking Lot</Link>
+                        </button>
         </div>
 
     );

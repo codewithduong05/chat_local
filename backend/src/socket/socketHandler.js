@@ -5,11 +5,10 @@ const socketHandler = (io) => {
     // console.log('Client connected:', socket.id);
 
     socket.on('send-parking', (data) => {
-        
       const result = createParking(data);   
 
-    
-      io.emit('parking-update', result);
+      
+      // io.emit('parking-update', result);
     });
 
     socket.on('disconnect', () => {

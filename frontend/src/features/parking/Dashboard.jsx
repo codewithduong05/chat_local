@@ -22,50 +22,49 @@ const ParkingDashboard = () => {
   ];
   const toggleSlot = useCallback((id) => {
     setSelectedSlot(prev => (id === prev ? null : id));
-    socket.emit("send-parking", id);
-
   }, []);
 
-  useEffect(() => {
-    const handler = (data) => {
-      setServerNow(data.serverNow);
-      setExpiresAt(data.expiresAt);
-    };
+// setInterval(() => {
+//   // const now = Date.now();
 
-    socket.on("parking-update", handler);
+//   for (seat of seats) {
+//     if (seat.status === 'occupied' && now >= seat.expiresAt) {
+//       seat.status = 'free';
+//       seat.expiresAt = null;
 
-    return () => socket.off("parking-update", handler);
-  }, []);
-
-
-  useEffect(() => {
-    if (!serverNow) return;
-
-    const offset = serverNow - Date.now();
+//       io.emit('parking-update', seat);
+//     }
+//   }
+// }, 1000);
 
 
-    // lệch giờ client ↔ server
 
-    const t = setInterval(() => {
-      setNow(Date.now() + offset);
-      // if (now)
-      console.log(now);
+  // useEffect(() => {
+  //   if (!serverNow) return;
+  //   const offset = serverNow - Date.now()
 
-    }, 1000);
+  //   // lệch giờ client ↔ server
 
-    return () => clearInterval(t);
-  }, [serverNow]);
+  //   const t = setInterval(() => {
+  //     setNow(Date.now() + offset);
+  //     // if (now)
+  //     console.log(now);
 
-  const getTimeLeft = () => {
-    console.log(formatTime(now));
+  //   }, 1000);
 
-    if (!expiresAt || !now) {
-      return 0
+  //   return () => clearInterval(t);
+  // }, [serverNow]);
+
+  // const getTimeLeft = () => {
+  //   console.log(formatTime(now));
+
+  //   if (!expiresAt || !now) {
+  //     return 0
 
 
-    };
-    return Math.max(0, expiresAt - now);
-  };
+  //   };
+  //   return Math.max(0, expiresAt - now);
+  // };
 
   const handler_click_socket = (e) => {
     e.preventDefault();
@@ -73,21 +72,25 @@ const ParkingDashboard = () => {
       alert("chua chon so gio")
     else if (selectedSlot == null)
       alert("chua cho so ghe")
-    console.log(selectedSlot);
+
     
     const data = {
-      seat : selectedSlot
+      seat : selectedSlot,
+      status : true,
+      expiresAt : selectTime
     }
-
+   socket.emit('send-parking', data);
+    
   }
   return (
     <div>
       <h1>ParkingDashboard </h1>
       <p className="new_date">
         Hết hạn sau:
-        {formatTime(getTimeLeft())}
+        {/* {formatTime(getTimeLeft())} */}
       </p>
       <form action="" >
+        <p>Nhap so gio (vd : 8h)</p>
         <input type="number" value={selectTime} onChange={e => setSelectTime(parseInt(e.target.value, 10))} name="" id="" />
         <button
           onClick={handler_click_socket}
