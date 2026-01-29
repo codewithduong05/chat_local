@@ -19,3 +19,13 @@
 .new_date {
   margin: 10px 20px;
 }
+.choice_recomend  {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.choice_recomend_button {
+    color: black;
+  background-color: lavender;
+}

@@ -2,11 +2,12 @@ import { createParking } from "../controllers/bookingController.js";
 
 const socketHandler = (io) => {
   io.on('connection', (socket) => {
-    // console.log('Client connected:', socket.id);
+    console.log('Client connected:', socket.id);
 
     socket.on('send-parking', (data) => {
       const result = createParking(data);   
-
+      console.log(result);
+      
       
       // io.emit('parking-update', result);
     });

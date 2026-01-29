@@ -24,18 +24,18 @@ const ParkingDashboard = () => {
     setSelectedSlot(prev => (id === prev ? null : id));
   }, []);
 
-// setInterval(() => {
-//   // const now = Date.now();
+  // setInterval(() => {
+  //   // const now = Date.now();
 
-//   for (seat of seats) {
-//     if (seat.status === 'occupied' && now >= seat.expiresAt) {
-//       seat.status = 'free';
-//       seat.expiresAt = null;
+  //   for (seat of seats) {
+  //     if (seat.status === 'occupied' && now >= seat.expiresAt) {
+  //       seat.status = 'free';
+  //       seat.expiresAt = null;
 
-//       io.emit('parking-update', seat);
-//     }
-//   }
-// }, 1000);
+  //       io.emit('parking-update', seat);
+  //     }
+  //   }
+  // }, 1000);
 
 
 
@@ -66,22 +66,24 @@ const ParkingDashboard = () => {
   //   return Math.max(0, expiresAt - now);
   // };
 
-  const handler_click_socket = (e) => {
-    e.preventDefault();
+  const handler_click_socket = () => {
     if (selectTime == 0 || !selectTime)
       alert("chua chon so gio")
     else if (selectedSlot == null)
       alert("chua cho so ghe")
 
-    
+
     const data = {
-      seat : selectedSlot,
-      status : true,
-      expiresAt : selectTime
+      seat: selectedSlot,
+      status: true,
+      expiresAt: selectTime
     }
-   socket.emit('send-parking', data);
-    
+    socket.emit('send-parking', data);
+
   }
+  useEffect(() => {
+    console.log("selectTime =", selectTime);
+  }, [selectTime]);
   return (
     <div>
       <h1>ParkingDashboard </h1>
@@ -91,11 +93,24 @@ const ParkingDashboard = () => {
       </p>
       <form action="" >
         <p>Nhap so gio (vd : 8h)</p>
-        <input type="number" value={selectTime} onChange={e => setSelectTime(parseInt(e.target.value, 10))} name="" id="" />
+        <input type="number" value={selectTime}
+          onChange={e => setSelectTime(Number(e.target.value))}
+          name="" id="" />
         <button
+          type="button"
           onClick={handler_click_socket}
         >Xac nhan</button>
-
+        <div className="choice_recomend">
+          <span
+            className="choice_recomend_button"
+            onClick={() => setSelectTime(12)}>12 h</span>
+          <span
+            className="choice_recomend_button"
+            onClick={() => setSelectTime(8)}>8 h</span>
+          <span
+            className="choice_recomend_button"
+            onClick={() => setSelectTime(4)}>4 h</span>
+        </div>
       </form>
       <br />
       <div className="grid">

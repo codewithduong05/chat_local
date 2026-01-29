@@ -54,4 +54,5 @@ socketHandler(io);
 
 server.listen(process.env.PORT_BACKEND, () => {
   console.log("Server running on port 3000");
+   connectDB()
 });
