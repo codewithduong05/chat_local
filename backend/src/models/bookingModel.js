@@ -18,6 +18,7 @@ const getAll = () => bookings;
 const bookingSchema = new mongoose.Schema({
   seat: Number,
   status: Boolean,
+  serverTime : Number,
   expireAt: {
     type: Date,
   }, // thời điểm hết hạn tuyệt đối (server tính)

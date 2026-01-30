@@ -3,6 +3,7 @@ import slots from "@/lib/slice_slot";
 import { useCallback, useEffect, useState } from "react";
 import { socket } from "@/services/socket.service";
 import formatTime from "@/utils/format_time";
+import { getTimeParking } from "../../services/parking.service";
 
 const ParkingDashboard = () => {
   const [selectedDate] = useState("today");
@@ -82,6 +83,16 @@ const ParkingDashboard = () => {
 
   }
   useEffect(() => {
+   const fectch = async () => {
+      const response = await getTimeParking()
+      console.log(response);
+      
+   }
+   fectch()
+  }, [])
+  
+  useEffect(() => {
+
     console.log("selectTime =", selectTime);
   }, [selectTime]);
   return (
