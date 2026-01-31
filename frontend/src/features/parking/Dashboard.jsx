@@ -67,19 +67,20 @@ const ParkingDashboard = () => {
   //   return Math.max(0, expiresAt - now);
   // };
 
-  const handler_click_socket = () => {
-    if (selectTime == 0 || !selectTime)
-      alert("chua chon so gio")
-    else if (selectedSlot == null)
-      alert("chua cho so ghe")
+  const handler_click_socket = async () => {
+    await getTimeParking()
+    // if (selectTime == 0 || !selectTime)
+    //   alert("chua chon so gio")
+    // else if (selectedSlot == null)
+    //   alert("chua cho so ghe")
 
 
-    const data = {
-      seat: selectedSlot,
-      status: true,
-      expiresAt: selectTime
-    }
-    socket.emit('send-parking', data);
+    // const data = {
+    //   seat: selectedSlot,
+    //   status: true,
+    //   expiresAt: selectTime
+    // }
+    // socket.emit('send-parking', data);
 
   }
   useEffect(() => {
