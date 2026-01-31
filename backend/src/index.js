@@ -16,11 +16,16 @@ import socketHandler from "./socket/socketHandler.js";
 
 const app = express();
 
+// app.use(cors({
+//   origin: process.env.URL_FE, // frontend
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
 app.use(cors({
-  origin: process.env.URL_FE, // frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: true, // tự động lấy origin từ request
+  credentials: true,
 }));
+
 app.use(express.json())
 
 // print logger status cmd 
@@ -48,6 +53,7 @@ app.use(errorHandler);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { origin: "*" },
+      methods: ["GET", "POST"]
 });
 
 socketHandler(io);
