@@ -12,6 +12,7 @@ export const handleBooking = async (seat) => {
   // const DURATION = seat.expiresAt * 60 * 60 * 1000
   const DURATION = TIMER_CONFIG.DURATION_MS(seat.expiresAt)
   const data = await Booking.create({ seat : seat.seat, status: seat.status, serverTime: DURATION });
+  console.log(data);
   
   if (data) {
     return {
