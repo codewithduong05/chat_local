@@ -44,3 +44,11 @@ export const addHours = (date, hours) => {
 export const getRemainingMs = (expireAt) => {
   return expireAt.getTime() - Date.now();
 };
+
+export function formatTime(seconds) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+
+  return `${h} giờ ${m} phút ${s} giây`;
+}

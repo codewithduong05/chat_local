@@ -14,20 +14,14 @@ export const createParking = async (seat) => {
 export const restParking = async (req,res) => {
  
     try {
-        
-        
-        if (!tempdata || tempdata == undefined) {
-            return res.status(400).json({
-                message : message.error.server[404]
-            })
-        } 
-        const data =  await getTimeParking()
+        const data =  await getTimeParking()     
         if (data == false) {
             return res.status(400).json({
                 data : null,
                 message : message.error.server[404]
             })
         }
+     
         
         return res.status(200).json({
             data : data,

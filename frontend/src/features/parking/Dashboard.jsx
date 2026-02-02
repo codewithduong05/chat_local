@@ -6,8 +6,8 @@ import formatTime from "@/utils/format_time";
 import { getTimeParking } from "../../services/parking.service";
 
 const ParkingDashboard = () => {
-  const [selectedDate] = useState("today");
-  const [now, setNow] = useState(Date.now());
+  const [messageDate,setmessageDate] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectTime, setSelectTime] = useState(0)
   const [serverNow, setServerNow] = useState(null);
@@ -25,84 +25,66 @@ const ParkingDashboard = () => {
     setSelectedSlot(prev => (id === prev ? null : id));
   }, []);
 
-  // setInterval(() => {
-  //   // const now = Date.now();
 
-  //   for (seat of seats) {
-  //     if (seat.status === 'occupied' && now >= seat.expiresAt) {
-  //       seat.status = 'free';
-  //       seat.expiresAt = null;
-
-  //       io.emit('parking-update', seat);
-  //     }
-  //   }
-  // }, 1000);
-
-
-
-  // useEffect(() => {
-  //   if (!serverNow) return;
-  //   const offset = serverNow - Date.now()
-
-  //   // lệch giờ client ↔ server
-
-  //   const t = setInterval(() => {
-  //     setNow(Date.now() + offset);
-  //     // if (now)
-  //     console.log(now);
-
-  //   }, 1000);
-
-  //   return () => clearInterval(t);
-  // }, [serverNow]);
-
-  // const getTimeLeft = () => {
-  //   console.log(formatTime(now));
-
-  //   if (!expiresAt || !now) {
-  //     return 0
-
-
-  //   };
-  //   return Math.max(0, expiresAt - now);
-  // };
 
   const handler_click_socket = async () => {
-    await getTimeParking()
-    // if (selectTime == 0 || !selectTime)
-    //   alert("chua chon so gio")
-    // else if (selectedSlot == null)
-    //   alert("chua cho so ghe")
+    if (selectTime == 0 || !selectTime)
+      alert("chua chon so gio")
+    else if (selectedSlot == null)
+      alert("chua cho so ghe")
 
 
-    // const data = {
-    //   seat: selectedSlot,
-    //   status: true,
-    //   expiresAt: selectTime
-    // }
-    // socket.emit('send-parking', data);
+    const data = {
+      seat: selectedSlot,
+      status: true,
+      expiresAt: selectTime
+    }
+     setExpiresAt(true)
+      setLoading(!loading)
+    socket.emit('send-parking', data);
 
   }
   useEffect(() => {
    const fectch = async () => {
       const response = await getTimeParking()
-      console.log(response);
+ 
+      if (response.message) {
+        console.log(response.data);
+        setSelectedSlot(response.data[0].seat)
+        setExpiresAt(response.data[0].status)
+      }
       
    }
    fectch()
   }, [])
   
   useEffect(() => {
-
+    socket.on("parking-timer",(data) => {
+      // console.log(data);
+      setServerNow(data.timeFormat)
+      
+    })
+    socket.on("parking-expired", (data) => {
+      console.log(data);
+       setSelectedSlot(null)
+       setExpiresAt(null)
+       setmessageDate(data.message)
+       selectTime(0)
+      
+    })
     console.log("selectTime =", selectTime);
-  }, [selectTime]);
+  }, []);
+
+  
   return (
     <div>
       <h1>ParkingDashboard </h1>
-      <p className="new_date">
-        Hết hạn sau:
-        {/* {formatTime(getTimeLeft())} */}
-      </p>
+      {messageDate ? <span>{messageDate && messageDate}</span>
+      : 
+      <p>Het han sau : {serverNow}</p>
+      }
+      
+      
       <form action="" >
         <p>Nhap so gio (vd : 8h)</p>
         <input type="number" value={selectTime}
@@ -145,7 +127,14 @@ const ParkingDashboard = () => {
         ))}
 
       </div>
-
+      <div> Trang thai:  {loading && expiresAt
+      ? 
+      <span 
+      style={{color: "green",fontFamily:"monospace"}}
+      >{expiresAt.toString()}</span>  
+      : <span
+       style={{color: "red", fontFamily: "monospace"}}
+      >false</span>} </div>
     </div>);
 }
 
