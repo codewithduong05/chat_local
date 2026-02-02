@@ -3,7 +3,7 @@ import Login from "@/pages/Login";
 import ResponsiveLayout from "@/layouts/ResponsiveLayout";
 import ChatWindowUI from "@/features/chat/ChatWindow";
 import ChatAdmin from "@/pages/ChatAdmin";
-import ParkingDashboard from "@/features/parking/dashboard";
+import ParkingDashboard from "@/features/parking/Dashboard";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },

@@ -1,6 +1,6 @@
 import DesktopLayout from "./DesktopLayout";
 import MobileLayout from "./MobileLayout";
-import useResponsive from "../hooks/useResponsive";
+import useResponsive from "@/hooks/useResponsive";
 import useAuth from '@/hooks/useAuth';
 import { Link, Navigate } from 'react-router-dom'
 export default function ResponsiveLayout({ children }) {
