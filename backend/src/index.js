@@ -12,7 +12,10 @@ import http from "http";
 import { Server } from "socket.io"
 import { handleBooking } from "./services/parkinglotServices.js";
 import socketHandler from "./socket/socketHandler.js";
-
+// deploy
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
 
@@ -32,9 +35,9 @@ app.use(express.json())
 app.use(apiLogger);
 
 //  test enpoint
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "hello" });
-});
+// app.get("/", (req, res) => {
+//   res.status(200).json({ message: "hello" });
+// });
 // endpoints : http://{url}/api/v1
 app.use(RootRouter)
 
@@ -57,6 +60,14 @@ const io = new Server(server, {
 });
 
 socketHandler(io);
+
+if (process.env.NODE_ENV === "production") {
+  server.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+  server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  });  
+}
 
 server.listen(process.env.PORT_BACKEND, () => {
   console.log("Server running on port 3000");

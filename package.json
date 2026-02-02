@@ -2,7 +2,12 @@
   "name": "chatlocal",
   "version": "1.0.0",
   "description": "",
+  
   "scripts": {
+    
+    "build": "cd frontend && npm ci --include=dev && npm run build && ls -la",
+    "start" : "cd backend && npm install && npm start",
+
     "dev_fe": "cd frontend && npm run dev -- --host",
     "dev_be": "node --watch backend/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
