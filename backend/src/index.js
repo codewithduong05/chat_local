@@ -62,9 +62,9 @@ const io = new Server(server, {
 socketHandler(io);
 
 if (process.env.NODE_ENV === "production") {
-  server.use(express.static(path.join(__dirname, '../frontend/dist')));
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-  server.get('*', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
   });  
 }

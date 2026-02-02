@@ -1,4 +1,10 @@
 {
-  "buildCommand": "cd frontend && npm ci --include=dev && npm run build",
-  "outputDirectory": "frontend/dist"
+    "buildCommand": "cd frontend && npm ci --include=dev && npm run build",
+    "outputDirectory": "frontend/dist",
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/frontend/index.html"
+        }
+    ]
 }
