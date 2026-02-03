@@ -31,8 +31,7 @@ app.use(cors({
 
 app.use(express.json())
 
-// print logger status cmd 
-app.use(apiLogger);
+
 
 
 app.use(RootRouter)
@@ -49,7 +48,7 @@ socketHandler(io);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const frontendPath = path.join(__dirname, '../frontend/dist');
+const frontendPath = path.join(__dirname, '../../frontend/dist');
 console.log("Debug !!! FE_PATH:", frontendPath);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(frontendPath));
@@ -59,9 +58,10 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(frontendPath, 'index.html'));
   });
 }
-
+// print logger status cmd 
+app.use(apiLogger);
 app.use(notFoundHandler);
-app.use(errorHandler);
+app.use(errorHandler);                                  
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log("Server running on port " + PORT);
