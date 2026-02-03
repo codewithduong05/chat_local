@@ -52,7 +52,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const frontendPath = path.join(__dirname, '../frontend/dist');
-
+console.log("Debug !!! FE_PATH:", frontendPath);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(frontendPath));
 
