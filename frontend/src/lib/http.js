@@ -26,13 +26,15 @@ export const request = async (url, options = {}) => {
   }
 
   const res = await fetch(`${ENV.API_URL}${url}`, fetchOptions);
-
+ // Read body only once as text, then try parse JSON
+  const text = await res.text();
+  
   // Thử parse JSON, fallback về text
   let payload;
   try {
-    payload = await res.json();
+    payload = text ? JSON.parse(text) : null;
   } catch (e) {
-    payload = await res.text();
+    payload = text;
   }
 
   if (!res.ok) {
@@ -44,6 +46,8 @@ export const request = async (url, options = {}) => {
     const error = new Error(payload?.message || payload || "Request failed");
     error.status = res.status;
     error.payload = payload;
+    console.log(error);
+    
     throw error;
   }
 
