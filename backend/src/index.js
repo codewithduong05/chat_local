@@ -64,15 +64,18 @@ socketHandler(io);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const frontendPath = path.join(__dirname, '../frontend/dist');
+
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  app.use(express.static(frontendPath));
+
   app.use((req, res, next) => {
-    if (req.path.startsWith('/api')) return next();  // fix spa route
+    if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(frontendPath, 'index.html'));
   });
 }
-
-server.listen(process.env.PORT_BACKEND, () => {
-  console.log("Server running on port 3000");
-  connectDB()
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
+  connectDB();
 });
