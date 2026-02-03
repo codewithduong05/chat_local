@@ -23,6 +23,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login({ username, password })
+            console.log(response);
+            
             if (response.status == 200 || response.success == true) {
                 localStorage.setItem('token', response.data.access_token);
                 setError("");

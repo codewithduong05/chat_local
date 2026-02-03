@@ -37,8 +37,6 @@ app.use(apiLogger);
 
 app.use(RootRouter)
 
-app.use(notFoundHandler);
-app.use(errorHandler);
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -61,6 +59,9 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(frontendPath, 'index.html'));
   });
 }
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log("Server running on port " + PORT);

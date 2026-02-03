@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "cd frontend &&  npm ci --include=dev && npm run build" ,
+    "build": "cd frontend &&  npm ci --include=dev && npm run build " ,
     "start": "cd backend && npm install && node src/index.js",
     "dev": "concurrently \"npm run dev_be\" \"npm run dev_fe\"",
     "dev_fe": "cd frontend && npm run dev -- --host",
