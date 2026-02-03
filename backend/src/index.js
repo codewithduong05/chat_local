@@ -34,24 +34,11 @@ app.use(express.json())
 // print logger status cmd 
 app.use(apiLogger);
 
-//  test enpoint
-// app.get("/", (req, res) => {
-//   res.status(200).json({ message: "hello" });
-// });
-// endpoints : http://{url}/api/v1
+
 app.use(RootRouter)
 
 app.use(notFoundHandler);
 app.use(errorHandler);
-
-// const logUrl = process.env.LOG_URL_BACKEND || "http://localhost:";
-// app.listen(process.env.PORT_BACKEND, () => {
-//     console.log("Server is running " );
-//     console.log("url:" +logUrl + process.env.PORT_BACKEND);
-//     console.log("---");
-
-//     connectDB()
-// })
 
 const server = http.createServer(app);
 const io = new Server(server, {
