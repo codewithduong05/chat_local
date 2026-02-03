@@ -31,7 +31,7 @@ const socketHandler = (io) => {
           seconds: remainingSeconds,
           timeFormat: formatTime(remainingSeconds),
         });
-        console.log(remainingSeconds);
+        // console.log(remainingSeconds);
         
         if (remainingSeconds <= 0) {
           clearInterval(timer);
