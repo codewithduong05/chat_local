@@ -18,9 +18,9 @@ const socketHandler = (io) => {
       // console.log(seconds);
 
 
-      // const DURATION = TIMER_CONFIG.DURATION_MS(data.expiresAt)
-      // let remainingSeconds = Math.floor(DURATION / 1000);
-        let remainingSeconds = 20
+      const DURATION = TIMER_CONFIG.DURATION_MS(data.expiresAt)
+      let remainingSeconds = Math.floor(DURATION / 1000);
+        // let remainingSeconds = 20
 
         const timer = setInterval(() => {
         remainingSeconds--;
