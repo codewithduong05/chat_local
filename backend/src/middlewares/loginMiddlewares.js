@@ -21,7 +21,7 @@ const loginMiddlewares  =  async (req,res,next) => {
                 message: message.error.user
             });
         }      
-        // console.log(usernameExists);
+        console.log(usernameExists);
         
         // so sanh hash password
         const hashingPasswordLogin = bcrypt.hashSync(password, usernameExists.password);
