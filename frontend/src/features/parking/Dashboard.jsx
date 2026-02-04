@@ -35,6 +35,7 @@ const ParkingDashboard = () => {
 
 
     const data = {
+      id : "parking01",
       seat: selectedSlot,
       status: true,
       expiresAt: selectTime
