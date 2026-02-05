@@ -24,7 +24,7 @@ const socketHandler = (io) => {
       // console.log(formatTime(hash_expiresAt));
 
       // let remainingSeconds = Math.floor(DURATION / 1000);
-      // let remainingSeconds = 20
+      // let remainingSeconds = 10
 
       const timer = setInterval(() => {
         const now = Date.now();
@@ -32,7 +32,7 @@ const socketHandler = (io) => {
           Math.floor((new Date(hash_expiresAt).getTime() - now) / 1000),
           0
         );
-
+        // remainingSeconds --
         cachems = remainingSeconds
         // 3) output trả về FE
         io.emit("parking-timer", {
@@ -40,7 +40,7 @@ const socketHandler = (io) => {
           seconds: remainingSeconds,
           timeFormat: formatTime(remainingSeconds),
         });
-        // console.log(remainingSeconds);
+        console.log(remainingSeconds);
 
         if (remainingSeconds <= 0) {
           clearInterval(timer);

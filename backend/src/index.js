@@ -12,6 +12,7 @@ import http from "http";
 import { Server } from "socket.io"
 import { handleBooking } from "./services/parkinglotServices.js";
 import socketHandler from "./socket/socketHandler.js";
+import parkingHandler from "./socket/parking_handler.js";
 // deploy
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -43,7 +44,8 @@ const io = new Server(server, {
   methods: ["GET", "POST"]
 });
 
-socketHandler(io);
+// socketHandler(io);
+parkingHandler(io)
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
